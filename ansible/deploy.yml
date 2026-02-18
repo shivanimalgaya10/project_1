@@ -1,0 +1,40 @@
+- name: Auto Deploy Container
+  hosts: web
+  become: true
+
+  tasks:
+
+    - name: Update packages
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Add ubuntu user to docker group
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes
+
+    - name: Start Docker
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Pull Docker Image
+      command: docker pull shivanimalgaya10/projectdocker:latest
+
+    - name: Stop old container (if running)
+      command: docker stop mycloud
+      ignore_errors: yes
+
+    - name: Remove old container
+      command: docker rm mycloud
+      ignore_errors: yes
+
+    - name: Run new container
+      command: docker run -d -p 808 0:80 --restart always --name mycloud shivanimalgaya10/projectdocker:latest
