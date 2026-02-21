@@ -47,7 +47,7 @@ jobs:
         run: terraform apply -auto-approve -var="key_name=${{ secrets.EC2_KEY_NAME }}"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Show EC2 Public IP
         working-directory: ./terraform
