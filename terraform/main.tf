@@ -49,7 +49,7 @@ resource "aws_security_group" "devops_sg" {
 }
 
 resource "aws_instance" "devops_ec2" {
-      ami           = var.ami
+  ami           = var.ami
   instance_type = "t3.micro"
   key_name      = var.key_name
 
