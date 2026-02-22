@@ -90,7 +90,7 @@ jobs:
     - name: Run Ansible
       run: |
         ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i "${{ steps.tf_output.outputs.ip }}," \
-        --private-key ~/.ssh/first-key_pair.pem \
+        --private-key ~/.ssh/first_key_pair.pem \
         -u ubuntu \
         ansible/deploy.yml \
         --extra-vars "image=$IMAGE_NAME:${{ github.sha }}"
