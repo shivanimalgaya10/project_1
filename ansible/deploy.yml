@@ -1,5 +1,5 @@
 - name: Auto Deploy Container
-  hosts: web
+  hosts: all
   become: true
 
   tasks:
