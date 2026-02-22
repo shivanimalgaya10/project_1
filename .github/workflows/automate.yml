@@ -106,11 +106,9 @@ jobs:
       run: terraform init
 
     # 8. Terraform Apply
-      # run: terraform apply -auto-approve -var-file="terraform.tfvars"
-
     - name: Terraform Apply
       working-directory: terraform
-      run: terraform apply -auto-approve -var="ami=ami-0f3caa1cf4417e51b" -var="key_name=first_key_pair" -var="region=us-east-1"
+      run: terraform apply -auto-approve -var-file="terraform.tfvars"
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
